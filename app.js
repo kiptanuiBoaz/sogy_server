@@ -1,12 +1,21 @@
 const express = require("express");
 const app = express();
+const cors=require('cors')
+
+app.use(cors())
 
 app.use(express.json())
 
-const users = require('./routes/users')
+app.post('/customers', function (req, res) {
+    console.log(req.body);
+    res.send();
+});
 
-app.use('/user',users);
 
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, console.log(`Server started on port ${PORT}`));
+const PORT = process.env.PORT || 8080;
+
+app.listen(PORT, function(err){
+    if (err) console.log(err);
+    console.log("Server listening on PORT", PORT);
+});
